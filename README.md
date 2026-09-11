@@ -13,6 +13,7 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 - [ ] Stage 2: Clean data with pandas and create charts with matplotlib
 - [ ] Stage 3: Load data into SQLite and answer questions with SQL
 - [ ] Stage 4: Automate the pipeline and publish a Streamlit dashboard
+- [ ] Stage 5: Interactive 3D map of exoplanets, with details shown for each selected planet
 
 ## Skills Demonstrated
 [Fill in as each stage is completed. List only skills actually shown in this repo.]
