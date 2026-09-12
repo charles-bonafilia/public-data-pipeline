@@ -1,4 +1,3 @@
-```markdown
 # Public Data Pipeline
 
 ## Problem Statement
@@ -6,7 +5,8 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 
 ## Tech Stack
 - Python 3.13 (standard library only for Stage 1)
-- [Later stages: list tools as they are added]
+- Git for version control
+- Data source: NASA Exoplanet Archive (PSCompPars table, retrieved via its TAP service)
 
 ## Roadmap
 - [ ] Stage 1: Read a CSV with plain Python and print a summary report
@@ -19,5 +19,15 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 [Fill in as each stage is completed. List only skills actually shown in this repo.]
 
 ## Setup
-[Written in a later lesson, after the virtual environment is created.]
 ```
+python3.13 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+Download the dataset (not stored in this repository):
+```
+mkdir -p data/raw
+curl -o data/raw/exoplanets.csv "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,discoverymethod,disc_year,sy_dist,pl_rade+from+pscomppars&format=csv"
+```
+## License
+MIT
