@@ -16,7 +16,15 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 - [ ] Stage 5: Interactive 3D map of exoplanets, with details shown for each selected planet
 
 ## Skills Demonstrated
-[Fill in as each stage is completed. List only skills actually shown in this repo.]
+- **Data acquisition**: Utilized NASA's TAP service using command-line (`curl`); a 6-column subset archive retrieved
+- **Data quality**: Excluded 28 missing distance values explicitly when calculating mean distance of discovered planets; exclusion reported alongside the average
+- **Data verification**: Cross-checked Python results against independent command-line counts (`wc -l`, `grep`, `cut`, `sort`, `uniq`); all three tallies sum to 6,360 planets
+- **Reproducibility**: No raw data included in the repo; README provides download instructions
+- **Python**: CSV reading, loops, dictionaries for frequency counts, sorting by key and by value
+- **Analytical interpretation**: 2014 and 2016 spikes reflect bulk confirmation methods, so `disc_year` measures confirmation methodology rather than detection capability
+- **Version control**: 6 commits, `.gitignore` excluding raw data and `.venv`; MIT license; private commit email
+
+
 
 ## Setup
 ```
