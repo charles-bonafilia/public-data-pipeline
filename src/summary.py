@@ -8,13 +8,21 @@ with open("data/raw/exoplanets.csv") as f:
     count = 0
     counts = {}
     years = {}
+    dist_total = 0
+    dist_count = 0
+    dist_missing = 0
     for row in reader:
         count = count + 1
         method = row[2]
         counts[method] = counts.get(method, 0) + 1
         year = row[3]
         years[year] = years.get(year, 0) + 1
-
+        distance = row[4]
+        if distance != "":
+            dist_total = dist_total + float(distance)
+            dist_count = dist_count + 1
+        else:
+            dist_missing = dist_missing + 1
 print(f"Columns: {header}")
 print(f"Planets: {count}")
 
@@ -28,5 +36,8 @@ sorted_years = sorted(years.items(), key=lambda pair: pair[0])
 for year, number in sorted_years:
     print(f"  {year}: {number}")
 
-
+print("Distance (parsecs):")
+print(f" Planets with a distance value {dist_count}")
+print(f" Planets missing a distance: {dist_missing}")
+print(f" Average distance: {dist_total / dist_count:.1f}")
 
