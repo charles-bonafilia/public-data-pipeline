@@ -9,7 +9,7 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 - Data source: NASA Exoplanet Archive (PSCompPars table, retrieved via its TAP service)
 
 ## Roadmap
-- [ ] Stage 1: Read a CSV with plain Python and print a summary report
+- [x] Stage 1: Read a CSV with plain Python and print a summary report
 - [ ] Stage 2: Clean data with pandas and create charts with matplotlib
 - [ ] Stage 3: Load data into SQLite and answer questions with SQL
 - [ ] Stage 4: Automate the pipeline and publish a Streamlit dashboard
