@@ -1,7 +1,7 @@
 # Public Data Pipeline
 
 ## Problem Statement
-This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive. It asks how the discovery of these planets has changed throughout the years and compares the distance at which we are finding the most exoplanets and the discovery methods used. The results show how planet-hunting methods have shaped what we know. Knowing this information may influence future discovery patterns allowing scientists to refine their approaches for discovering new exoplanets.
+This project analyzes 6,451 confirmed exoplanets from the NASA Exoplanet Archive. It explores how discoveries vary by year and discovery method, and summarizes the distances of known exoplanets.
 
 ## Tech Stack
 - Python 3.13 (standard library only for Stage 1)
@@ -16,26 +16,45 @@ This project analyzes 6,360 confirmed exoplanets from the NASA Exoplanet Archive
 - [ ] Stage 5: Interactive 3D map of exoplanets, with details shown for each selected planet
 
 ## Skills Demonstrated
-- **Data acquisition**: Utilized NASA's TAP service using command-line (`curl`); a 6-column subset archive retrieved
-- **Data quality**: Excluded 28 missing distance values explicitly when calculating mean distance of discovered planets; exclusion reported alongside the average
-- **Data verification**: Cross-checked Python results against independent command-line counts (`wc -l`, `grep`, `cut`, `sort`, `uniq`); all three tallies sum to 6,360 planets
-- **Reproducibility**: No raw data included in the repo; README provides download instructions
-- **Python**: CSV reading, loops, dictionaries for frequency counts, sorting by key and by value
-- **Analytical interpretation**: 2014 and 2016 spikes reflect bulk confirmation methods, so `disc_year` measures confirmation methodology rather than detection capability
-- **Version control**: 6 commits, `.gitignore` excluding raw data and `.venv`; MIT license; private commit email
+- **Data acquisition**: Downloaded six columns from NASA's TAP service using curl.
+- **Data quality**: Reported 28 missing distance values and excluded them from the average distance calculation.
+- **Data verification**: Independently counted 6,451 CSV records using PowerShell, matching the Python report.
+- **Reproducibility**: Included download instructions; excluded raw data and the virtual environment from Git.
+- **Python**: Used CSV reading, loops, dictionaries for frequency counts, and sorting.
+- **Version control**: Used Git, a .gitignore file, and an MIT license.
 
+## Setup (Windows PowerShell)
+Create and activate a virtual environment:
 
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-## Setup
+Stage 1 uses only Python's standard library and requires no additional packages.
+
+Download the dataset:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .\data\raw
+curl.exe --fail --location --output .\data\raw\exoplanets.csv "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,discoverymethod,disc_year,sy_dist,pl_rade+from+pscomppars&format=csv"
 ```
-python3.13 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+
+Run the summary from the project root:
+
+```powershell
+python .\src\summary.py
 ```
-Download the dataset (not stored in this repository):
-```
-mkdir -p data/raw
-curl -o data/raw/exoplanets.csv "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,discoverymethod,disc_year,sy_dist,pl_rade+from+pscomppars&format=csv"
-```
+
+## Dataset Snapshot
+Retrieved: October 19, 2026.
+
+- Planets: 6,451
+- Planets with distance values: 6,423
+- Planets missing distances: 28
+- Average distance: 704.8 parsecs
+
+The archive changes over time, so future downloads may produce different results.
+
 ## License
 MIT
